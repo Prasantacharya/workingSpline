@@ -32,7 +32,7 @@ public class PasteMethodsToRobot {
 		} else {
 			double angleToDrive;
 			if (speed > 0)
-				angleToDrive = (spline.getAngle(robotDistance);
+				angleToDrive = (spline.getAngle(robotDistance));
 			else
 				angleToDrive = (spline.getReverseAngle(robotDistance));
 			if (spline.getDistance() > 0) {
@@ -43,11 +43,11 @@ public class PasteMethodsToRobot {
 					if(angleToDrive < -90 && gyro.getYaw() > 90){
 						double temp = -180 - angleToDrive;
 						temp += -(180 - gyro.getYaw());
-						arcadeDrive(speed, -temp /360*8,true);
+						arcadeDrive(speed, -temp /360*8);
 					} else if (angleToDrive > 90 && gyro.getYaw() < -90){
 						double temp = 180 - angleToDrive;
 						temp += (180 + gyro.getYaw());
-						arcadeDrive(speed, -temp /360*8,true);					
+						arcadeDrive(speed, -temp /360*8);					
 					} else {
 						arcadeDrive(speed, -((gyro.getYaw() - angleToDrive) /360*8));
 					}
