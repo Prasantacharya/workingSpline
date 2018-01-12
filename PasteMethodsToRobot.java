@@ -20,7 +20,7 @@ public class PasteMethodsToRobot {
 			startingENCClicksLeft = drive.masterLeft.getSelectedSensorPosition(0);
 			startingENCClicksRight = -drive.followerRightOne.getSelectedSensorPosition(0);
 		}
-		double robotDistance = (((drive.masterLeft.getSelectedSensorPosition(0) - startingENCClicksLeft) + (-drive.followerRightOne.getSelectedSensorPosition(0) - startingENCClicksRight))/AutoConstants.TICKS_PER_INCH)/2;
+		double robotDistance = Math.abs((((drive.masterLeft.getSelectedSensorPosition(0) - startingENCClicksLeft) + (-drive.followerRightOne.getSelectedSensorPosition(0) - startingENCClicksRight))/AutoConstants.TICKS_PER_INCH)/2);
 		if (spline.getDistance() <= robotDistance) {
 			drive.masterLeft.set(PercentOutput,0.00);
 			drive.masterRight.set(PercentOutput,0.00);
