@@ -49,12 +49,12 @@ public class PasteMethodsToRobot {
 						temp += (180 + gyro.getYaw());
 						arcadeDrive(speed, -temp /360*8,true);					
 					} else {
-						arcadeDrive(speed, -((gyro.getYaw() - angleToDrive) /360*8),true);
+						arcadeDrive(speed, -((gyro.getYaw() - angleToDrive) /360*8));
 					}
 					//System.out.println(gyro.getYaw() - angleToDrive);
 				}
 			} else {
-				arcadeDrive(-speed, -((gyro.getYaw() - angleToDrive) /360*8),true);
+				arcadeDrive(-speed, -((gyro.getYaw() - angleToDrive) /360*8));
 			}
 		}
 		return false;
