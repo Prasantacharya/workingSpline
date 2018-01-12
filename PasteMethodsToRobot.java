@@ -17,25 +17,26 @@ public class PasteMethodsToRobot {
     	int startingENCClicksRight;
 		if (gotStartingENCClicks == false) {
 			gotStartingENCClicks = true;
-			startingENCClicksLeft = drive.masterLeft.getEncPosition();
-			startingENCClicksRight = -drive.followerRightOne.getEncPosition();
+			startingENCClicksLeft = drive.masterLeft.getSelectedSensorPosition(0);
+			startingENCClicksRight = -drive.followerRightOne.getSelectedSensorPosition(0);
 		}
-		if (spline.getDistance() <= (((drive.masterLeft.getEncPosition() - startingENCClicksLeft)/ AutoConstants.TICKS_PER_INCH + (-drive.followerRightOne.getEncPosition() - startingENCClicksRight)/ AutoConstants.TICKS_PER_INCH))/2) {
-			drive.masterLeft.set(0.00);
-			drive.masterRight.set(0.00);
+		double robotDistance = (((drive.masterLeft.getSelectedSensorPosition(0) - startingENCClicksLeft) + (-drive.followerRightOne.getSelectedSensorPosition(0) - startingENCClicksRight))/AutoConstants.TICKS_PER_INCH)/2;
+		if (spline.getDistance() <= robotDistance) {
+			drive.masterLeft.set(PercentOutput,0.00);
+			drive.masterRight.set(PercentOutput,0.00);
 			System.out.println("Final NavX Angle: " + gyro.getYaw());
-			System.out.println("Enc value after speed 0 " + drive.masterLeft.getEncPosition());
+			System.out.println("Enc value after speed 0 " + drive.masterLeft.getSelectedSensorPosition(0));
 			//System.out.println(spline.toString());
 			gotStartingENCClicks = false;
 			return true;
 		} else {
 			double angleToDrive;
 			if (speed > 0)
-				angleToDrive = (spline.getAngle(Math.abs(((drive.masterLeft.getEncPosition() - startingENCClicksLeft)/ AutoConstants.TICKS_PER_INCH + (-drive.followerRightOne.getEncPosition() - startingENCClicksRight)/ AutoConstants.TICKS_PER_INCH))/2));
+				angleToDrive = (spline.getAngle(Math.abs(robotDistance));
 			else
-				angleToDrive = (spline.getReverseAngle(Math.abs(((drive.masterLeft.getEncPosition() - startingENCClicksLeft)/ AutoConstants.TICKS_PER_INCH + (-drive.followerRightOne.getEncPosition() - startingENCClicksRight)/ AutoConstants.TICKS_PER_INCH))/2));
+				angleToDrive = (spline.getReverseAngle(Math.abs(robotDistance)));
 			if (spline.getDistance() > 0) {
-				if (spline.getDistance() > Math.abs(((drive.masterLeft.getEncPosition() - startingENCClicksLeft)/ AutoConstants.TICKS_PER_INCH + (-drive.followerRightOne.getEncPosition() - startingENCClicksRight)/ AutoConstants.TICKS_PER_INCH))/2)
+				if (spline.getDistance() > Math.abs(robotDistance));
 				{
 				System.out.println("speed = " + speed);
 				System.out.println("angle = " + gyro.getYaw());
