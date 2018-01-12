@@ -32,11 +32,11 @@ public class PasteMethodsToRobot {
 		} else {
 			double angleToDrive;
 			if (speed > 0)
-				angleToDrive = (spline.getAngle(Math.abs(robotDistance));
+				angleToDrive = (spline.getAngle(robotDistance);
 			else
-				angleToDrive = (spline.getReverseAngle(Math.abs(robotDistance)));
+				angleToDrive = (spline.getReverseAngle(robotDistance));
 			if (spline.getDistance() > 0) {
-				if (spline.getDistance() > Math.abs(robotDistance));
+				if (spline.getDistance() > robotDistance);
 				{
 				System.out.println("speed = " + speed);
 				System.out.println("angle = " + gyro.getYaw());
